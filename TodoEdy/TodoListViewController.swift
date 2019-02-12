@@ -11,6 +11,7 @@ import UIKit
 class TodoListViewController: UITableViewController {
 
     var itemArray = ["Finde Mike", "Buy Eggs", "Destroy Dragons"]
+    let defaults = UserDefaults.standard
     // Declare intance variables here
     
     // Declare linked IBOulets
@@ -20,6 +21,10 @@ class TodoListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let items = defaults.array(forKey: "TodoListArray") as? [String]
+        {
+            itemArray = items
+        }
     }
     
     //MARK - Tableview Datasource Methods
@@ -42,9 +47,7 @@ class TodoListViewController: UITableViewController {
     //MARK - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //print(itemArray[indexPath.row])
-        
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        //print(itemArray[indexPath.row]
         
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark
         {
@@ -70,6 +73,9 @@ class TodoListViewController: UITableViewController {
             print("Success!")
             print(textField)
             self.itemArray.append(textField.text!)
+            
+            self.defaults.set(self.itemArray, forKey: "TodoListArray")
+            
             self.tableView.reloadData()
         }
         
