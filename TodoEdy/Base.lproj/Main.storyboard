@@ -32,7 +32,14 @@
                             <outlet property="delegate" destination="1KG-S9-OtZ" id="liv-JI-zXM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="TodoEdy" id="P8l-QD-NUk"/>
+                    <navigationItem key="navigationItem" title="TodoEdy" id="P8l-QD-NUk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ovw-zR-CsM">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addButtonPress:" destination="1KG-S9-OtZ" id="CLs-CU-kcG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="todoTableView" destination="ta8-o1-415" id="pNc-vg-HKC"/>
                     </connections>

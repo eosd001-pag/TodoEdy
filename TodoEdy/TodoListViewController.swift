@@ -10,7 +10,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
 
-    let itemArray = ["Finde Mike", "Buy Eggs", "Destroy Dragons"]
+    var itemArray = ["Finde Mike", "Buy Eggs", "Destroy Dragons"]
     // Declare intance variables here
     
     // Declare linked IBOulets
@@ -57,9 +57,32 @@ class TodoListViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
-        
     }
+    
+    //MARK - Add new Items
+    @IBAction func addButtonPress(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Add New ToDO Item", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Item", style: UIAlertAction.Style.default) { (action) in
+            // What should happend once the user clicks the add item button on our UIAlert
+            print("Success!")
+            print(textField)
+            self.itemArray.append(textField.text!)
+            self.tableView.reloadData()
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new Item"
+            textField = alertTextField
+            print("Now")
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
     
 
 }
