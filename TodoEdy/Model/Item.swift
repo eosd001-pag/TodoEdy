@@ -8,7 +8,10 @@
 
 import Foundation
 
-class Item {
+// For a class to be able, to be Encodable all of its properties must have standard data types.
+// Mark our class as conforming to the protocols Encodable.
+// This means that the item type is now able to encode itself into a plist or into a JSON file
+class Item: Codable {
     var title: String = ""
     var done: Bool = false
 }
